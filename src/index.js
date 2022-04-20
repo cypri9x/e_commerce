@@ -9,6 +9,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import About from './pages/about/About';
+import Blog from './pages/Blog/Blog';
+import Chat from './pages/Chat/Chat';
+import Calculator from './pages/Calculator/Calculator';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,6 +19,9 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<App />}>
         <Route path="about" element={<About />} />
+        <Route path="blog" element={<Blog />} />
+        <Route path="chat" element={<Chat />} />
+        <Route path="calculator" element={<Calculator/>}/> 
       </Route>
     </Routes>
   </BrowserRouter>

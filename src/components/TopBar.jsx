@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import './TopBar.css';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,37 +12,35 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const pages = ['about', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['about', 'Chat', 'Blog', 'Calculator'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout' ];
 
-class TopBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            anchorRef: null,
-            anchorElUser: null
-        };
-      }
- 
+function TopBar() {
+    const navigate = useNavigate();
+    const [anchorRef, setAnchorRef] = useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
 
-    handleOpenNavMenu = (event) => {
-        this.setState({ anchorRef: event.currentTarget })
-    }
-    handleOpenUserMenu = (event) => {
-        this.setState({ anchorElUser: event.currentTarget })
+    const handlePageClicked = (page) => {
+      navigate(page);
     }
 
-    handleCloseNavMenu = () => {
-        this.setState({ anchorRef: null })
+    const handleOpenNavMenu = (event) => {
+      setAnchorRef(event.currentTarget);
+    }
+    const handleOpenUserMenu = (event) => {
+      setAnchorElUser(event.currentTarget);
     }
 
-    handleCloseUserMenu = () => {
-        this.setState({ anchorElUser: null })
+    const handleCloseNavMenu = () => {
+      setAnchorRef(null);
     }
-    render() {
-      return <AppBar position="static">
+
+    const handleCloseUserMenu = () => {
+      setAnchorElUser(null);
+    }
+    return (<AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -60,14 +58,14 @@ class TopBar extends React.Component {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={this.handleOpenNavMenu}
+              onClick={handleOpenNavMenu}
               color="inherit"
             >
               <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
-              anchorEl={this.state.anchorRef}
+              anchorEl={anchorRef}
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
@@ -77,15 +75,15 @@ class TopBar extends React.Component {
                 vertical: 'top',
                 horizontal: 'left',
               }}
-              open={Boolean(this.state.anchorRef)}
-              onClose={this.handleCloseNavMenu}
+              open={Boolean(anchorRef)}
+              onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={this.handleCloseNavMenu}>
-                  <Typography textAlign="center"> <Link to={page}>{page}</Link></Typography>
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" onClick={() => handlePageClicked(page)}> <div to={page}>{page}</div></Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -104,7 +102,7 @@ class TopBar extends React.Component {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={this.handleCloseNavMenu}
+                onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 <Link to={page}>{page}</Link>
@@ -114,14 +112,14 @@ class TopBar extends React.Component {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={this.handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
-              anchorEl={this.state.anchorElUser}
+              anchorEl={anchorElUser}
               anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
@@ -131,11 +129,11 @@ class TopBar extends React.Component {
                 vertical: 'top',
                 horizontal: 'right',
               }}
-              open={Boolean(this.state.anchorElUser)}
-              onClose={this.handleCloseUserMenu}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={this.handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
@@ -143,8 +141,8 @@ class TopBar extends React.Component {
           </Box>
         </Toolbar>
       </Container>
-    </AppBar>;
-    }
+    </AppBar>
+    )
 }
 
 export default TopBar;
