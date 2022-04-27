@@ -4,7 +4,7 @@ import './ItemCard.scss'
 import { CardContent, CardHeader, CardMedia, Typography } from '@mui/material';
 
 
-function ItemCard({title, subtitle, description}) {
+function ItemCard({title, subtitle, description, image}) {
 
     return (<div>
 
@@ -13,8 +13,8 @@ function ItemCard({title, subtitle, description}) {
             <CardMedia
                 component="img"
                 height="194"
-                image="https://www.lg.com/br/images/eletrodomesticos/fornos-microondas/md05119240/gallery/medium01.jpg"
-                alt="forno microondas"
+                image={image}
+                alt={title}
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
