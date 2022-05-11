@@ -6,19 +6,16 @@ import ItemCard from '../components/ItemCard';
 
 const initialState = {
 
-    items: []
+    items: [],
+    cart: []
 };
 
 function reducer(state, action) {
     switch (action.type) {
         case "save":
             return { ...state, items: [...state.items, action.payload] };
-        case "stop":
-            return { ...state, isRunning: false };
-        case "reset":
-            return { isRunning: false, time: 0 };
-        case "tick":
-            return { ...state, time: state.time + 1 };
+        case "addToCart":
+            return { ...state, cart: [...state.cart, action.payload] };
         default:
             throw new Error();
     }
@@ -30,6 +27,8 @@ function Chat() {
     const [subtitle, setSubtitle] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState("");
+
+    const numOfItemsInCart = state.cart.length;
 
     function handleAddClick() {
         dispatch({
@@ -43,9 +42,19 @@ function Chat() {
             },
         });
     }
+    function handleAddToCart(item) {
+        dispatch({
+            type: "addToCart",
+            payload: item
+        });
+
+
+        return;
+    }
 
     return (<div>
         <h1 color="blue">Chatzin</h1>
+        {JSON.stringify(numOfItemsInCart)}
         <TextField label="Title" variant="standard" onChange={(e) => setTitle(e.target.value)} />
         <TextField label="Subtitle" variant="standard" onChange={(e) => setSubtitle(e.target.value)} />
         <TextField label="Description" variant="standard" onChange={(e) => setDescription(e.target.value)} />
@@ -54,7 +63,7 @@ function Chat() {
         <Container>
             <Grid container spacing={2}>
                 {state.items.map(function (item) {
-                    return <Grid item xs={12} sm={6} md={4}><ItemCard title={item.title} subtitle={item.subtitle} image={item.image} description={item.description}></ItemCard> </Grid>;
+                    return <Grid item xs={12} sm={6} md={4}><ItemCard title={item.title} subtitle={item.subtitle} image={item.image} description={item.description} addToCart={()  => handleAddToCart(item)}></ItemCard> </Grid>;
                 })}
             </Grid>
         </Container>
