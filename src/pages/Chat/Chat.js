@@ -2,27 +2,10 @@ import React, { useReducer, useState } from 'react';
 import Card from '@mui/material/Card';
 import { Container, TextField, Button, Grid } from '@mui/material';
 import ItemCard from '../components/ItemCard';
-
-
-const initialState = {
-
-    items: [],
-    cart: []
-};
-
-function reducer(state, action) {
-    switch (action.type) {
-        case "save":
-            return { ...state, items: [...state.items, action.payload] };
-        case "addToCart":
-            return { ...state, cart: [...state.cart, action.payload] };
-        default:
-            throw new Error();
-    }
-}
+import { useCustomContext }from '../../store/CustomContext'
 
 function Chat() {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const { state, dispatch } = useCustomContext();
     const [title, setTitle] = useState("");
     const [subtitle, setSubtitle] = useState("");
     const [description, setDescription] = useState("");
