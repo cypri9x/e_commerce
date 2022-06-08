@@ -15,7 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link, useNavigate } from 'react-router-dom';
 import { Favorite, ShoppingCart } from '@mui/icons-material';
 import { Badge } from '@mui/material';
-import { useCustomContext }from '../store/CustomContext'
+import { useCustomContext } from '../store/CustomContext'
 
 const pages = ['about', 'Chat', 'Blog', 'Calculator'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -115,13 +115,15 @@ function TopBar() {
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-              <Link to={page}>{page}</Link>
+              <Typography textAlign="center" onClick={() => handlePageClicked(page)}> <div to={page}>{page}</div></Typography>
             </Button>
           ))}
         </Box>
-        <Box sx={{ flexGrow: 0.05 }}>
+        <Box  sx={{ flexGrow: 0.05 }}>
           <Badge badgeContent={numOfItemsInCart} color="secondary" aria-label="add to cart" onClick={openChart}>
-            <ShoppingCart />
+            <IconButton onClick={() => handlePageClicked("Cart")}>
+              <ShoppingCart />
+            </IconButton>
           </Badge>
         </Box>
         <Box sx={{ flexGrow: 0 }}>
