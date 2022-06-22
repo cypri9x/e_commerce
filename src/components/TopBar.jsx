@@ -18,7 +18,7 @@ import { Badge } from '@mui/material';
 import { useCustomContext } from '../store/CustomContext'
 
 const pages = ['about', 'Chat', 'Blog', 'Calculator'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Admin', 'Logout'];
 
 function TopBar() {
   const { state, dispatch } = useCustomContext();
@@ -44,6 +44,11 @@ function TopBar() {
   }
 
   const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  }
+
+  const handleNavigateSettingsMenu = (page) => {
+    navigate(page);
     setAnchorElUser(null);
   }
 
@@ -149,7 +154,7 @@ function TopBar() {
             onClose={handleCloseUserMenu}
           >
             {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
+              <MenuItem key={setting} onClick={() => handleNavigateSettingsMenu(setting)}>
                 <Typography textAlign="center">{setting}</Typography>
               </MenuItem>
             ))}

@@ -13,6 +13,7 @@ import Blog from './pages/Blog/Blog';
 import Chat from './pages/Chat/Chat';
 import Calculator from './pages/Calculator/Calculator';
 import Cart from './pages/Cart/Cart';
+import Admin from './pages/Admin/Admin';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,7 +24,8 @@ ReactDOM.render(
         <Route path="blog" element={<Blog />} />
         <Route path="chat" element={<Chat />} />
         <Route path="calculator" element={<Calculator/>}/> 
-        <Route path="Cart" element={<Cart/>}/> 
+        <Route path="Cart" element={<Cart/>}/>
+        <Route path="Admin" element={<Admin/>}/>  
       </Route>
     </Routes>
   </BrowserRouter>

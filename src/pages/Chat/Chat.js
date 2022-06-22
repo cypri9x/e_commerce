@@ -6,25 +6,7 @@ import { useCustomContext }from '../../store/CustomContext'
 
 function Chat() {
     const { state, dispatch } = useCustomContext();
-    const [title, setTitle] = useState("");
-    const [subtitle, setSubtitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [image, setImage] = useState("");
-
-    const numOfItemsInCart = state.cart.length;
-
-    function handleAddClick() {
-        dispatch({
-            type: "save",
-            payload: {
-                title: title,
-                subtitle: subtitle,
-                description: description,
-                image: image
-
-            },
-        });
-    }
+    
     function handleAddToCart(item) {
         dispatch({
             type: "addToCart",
@@ -37,12 +19,6 @@ function Chat() {
 
     return (<div>
         <h1 color="blue">Chatzin</h1>
-        {JSON.stringify(numOfItemsInCart)}
-        <TextField label="Title" variant="standard" onChange={(e) => setTitle(e.target.value)} />
-        <TextField label="Subtitle" variant="standard" onChange={(e) => setSubtitle(e.target.value)} />
-        <TextField label="Description" variant="standard" onChange={(e) => setDescription(e.target.value)} />
-        <TextField label="image" variant="standard" onChange={(e) => setImage(e.target.value)} />
-        <Button variant="contained" onClick={handleAddClick}>Add</Button>
         <Container>
             <Grid container spacing={2}>
                 {state.items.map(function (item) {
