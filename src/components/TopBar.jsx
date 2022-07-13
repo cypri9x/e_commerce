@@ -17,7 +17,7 @@ import { Favorite, ShoppingCart } from '@mui/icons-material';
 import { Badge } from '@mui/material';
 import { useCustomContext } from '../store/CustomContext'
 
-const pages = ['about', 'Chat', 'Blog', 'Calculator'];
+const pages = ['about', 'Home'];
 const settings = ['Profile', 'Account', 'Admin', 'Logout'];
 
 function TopBar() {

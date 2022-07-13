@@ -4,7 +4,7 @@ import { Container, TextField, Button, Grid } from '@mui/material';
 import ItemCard from '../components/ItemCard';
 import { useCustomContext }from '../../store/CustomContext'
 
-function Chat() {
+function Home() {
     const { state, dispatch } = useCustomContext();
     
     function handleAddToCart(item) {
@@ -18,7 +18,7 @@ function Chat() {
     }
 
     return (<div>
-        <h1 color="blue">Chatzin</h1>
+        <h1 color="blue">Product list</h1>
         <Container>
             <Grid container spacing={2}>
                 {state.items.map(function (item) {
@@ -30,4 +30,4 @@ function Chat() {
     )
 }
 
-export default Chat;
+export default Home;

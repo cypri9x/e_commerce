@@ -10,8 +10,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import About from './pages/about/About';
 import Blog from './pages/Blog/Blog';
-import Chat from './pages/Chat/Chat';
-import Calculator from './pages/Calculator/Calculator';
+import Home from './pages/Home/Home';
 import Cart from './pages/Cart/Cart';
 import Admin from './pages/Admin/Admin';
 
@@ -22,8 +21,7 @@ ReactDOM.render(
       <Route path="/" element={<App />}>
         <Route path="about" element={<About />} />
         <Route path="blog" element={<Blog />} />
-        <Route path="chat" element={<Chat />} />
-        <Route path="calculator" element={<Calculator/>}/> 
+        <Route path="home" element={<Home />} />
         <Route path="Cart" element={<Cart/>}/>
         <Route path="Admin" element={<Admin/>}/>  
       </Route>
