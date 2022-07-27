@@ -7,7 +7,7 @@ function Cart() {
 
     return <div className="cart-container">
         <div>
-            {state.cart.map((itemCart) => { return <ItemCart title={itemCart.title} subtitle={itemCart.subtitle} description={itemCart.description} image={itemCart.image} /> })}
+            {state.cart.map((itemCart) => { return <ItemCart title={itemCart.title} subtitle={itemCart.subtitle} description={itemCart.description} image={itemCart.image} count={itemCart.count} /> })}
         </div>
     </div>;
 }
